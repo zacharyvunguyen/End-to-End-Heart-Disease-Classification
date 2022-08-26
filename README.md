@@ -11,7 +11,9 @@
 <h3 align="center">Heart Diease Classification <br>An End-to-End Machine Learning Project</h3>
 
   <p align="center">
-    Developed and deployed a classifier for heart disease based on over 20 machine learning models, achieving an accuracy of 93.13% using the ExtraTreesClassifier500 model.
+    Developed and deployed a classifier for heart disease based on over 20 machine learning models, achieving an accuracy of 93.13% using the ExtraTreesClassifier500 model. <br>
+We have also implemented two filter-based methods, one wrapper-based method, and three embedded methods for majority vote feature selection. With feature selection, ExtraTreesClassifier1000 performs at the highest level of accuracy with an accuracy rate of 92.27%.
+
     
   </p>
 </div>
