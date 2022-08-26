@@ -12,15 +12,7 @@
 
   <p align="center">
     Developed and deployed a classifier for heart disease based on over 20 machine learning models, achieving an accuracy of 93.13% using the ExtraTreesClassifier100 model.
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    
   </p>
 </div>
 
@@ -29,27 +21,73 @@
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
+ <ol>
+<li>About the project
+<ol>
+<li>Dataset Description</li>
+<li>Libraries</li>
+<li>Data Cleaning &amp; Preprocessing&nbsp;
+<ol>
+<li>Converting features to catetgorical values</li>
+<li>Checking missing values</li>
+</ol>
+</li>
+<li>Exploratory Data Analysis
+<ol>
+<li>Distribution of heart disease&nbsp;</li>
+<li>Gender &amp; Agewise distribution</li>
+<li>Chest pain type distribution</li>
+<li>ST-Slope Distribution</li>
+<li>Numerical features distribution</li>
+</ol>
+</li>
+<li>Outlier Detection &amp; Removal
+<ol>
+<li>Z-score</li>
+<li>Identify &amp; Remove outliers with therdhold =3&nbsp;</li>
+<li>Converts categorical data into dummy</li>
+<li>Segregate dataset into feature X and target variables y</li>
+<li>Check Correlation</li>
+</ol>
+</li>
+<li>&nbsp;Dataset Split &amp; Feature Normalization
+<ol>
+<li>80/20 Split</li>
+<li>Min/Max Scaler</li>
+</ol>
+</li>
+<li>Cross Validation</li>
+<li>Model Building</li>
+<li>Model Evaluation
+<ol>
+<li>Best Model</li>
+<li>ROC AUC Curve</li>
+<li>Precision Recall Curve</li>
+<li>Feature Importance&nbsp;</li>
+</ol>
+</li>
+<li>Model Exported</li>
+<li>Feature Selections
+<ol>
+<li>Pearson correlation FS method</li>
+<li>Chi-square</li>
+<li>Recursive Feature elimination</li>
+<li>Embedded Logistic Regression</li>
+<li>Embedded Random forest</li>
+<li>Embedded Light gbm</li>
+<li>Identify &amp; Remove least important features</li>
+<li>Split &amp; Feature Normalization</li>
+<li>Model Building after feature selection</li>
+<li>Model Evaluatation after feature selection</li>
+<li>Soft Voting</li>
+<li>Soft Voting Model Evaluation</li>
+<li>Featur Importance</li>
+</ol>
+</li>
+<li>Conclusion&nbsp;</li>
+</ol>
+</li>
+</ol>
 </details>
 
 
