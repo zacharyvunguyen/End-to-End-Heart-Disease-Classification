@@ -142,16 +142,16 @@ This project requires Python 3.8 and the following Python libraries should be in
 
 ### Exploratory Data Analysis
 #### Distribution of heart disease 
-![](images/Distribution of heart disease.png)
+![](images/Distribution of heart disease.png)<br>
 As per the above figure, we can observe that the dataset is balanced having 628 heart disease patients and 561 normal patients.
 #### Gender & Agewise distribution
-![](images/gender.png)
+![](images/gender.png)<br>
 As we can see from above plot, in this dataset males percentage is way too higher than females where as average age of patients is around 55.
 ![](images/age_normal.png)
-![](images/age_heartpatient.png)
+![](images/age_heartpatient.png)<br>
 As we can see from above plot more patients accounts for heart disease in comparison to females whereas mean age for heart disease patients is around 58 to 60 years
 #### Chest pain type distribution
-![](images/chest_pain.png)
+![](images/chest_pain.png)<br>
 <table id="T_3de82_" class="dataframe">
 <thead>
 <tr>
@@ -191,7 +191,7 @@ As we can see from above plot more patients accounts for heart disease in compar
 As we can see from the above plot and statistics, 76.91% of the chest pain type of heart disease patients have asymptomatic chest pain.
 
 #### ST-Slope Distribution
-![](images/stslop.png)
+![](images/stslop.png)<br>
 <table id="T_145b6_" class="dataframe">
 <thead>
 <tr>
@@ -229,23 +229,59 @@ The ST segment /heart rate slope (ST/HR slope), has been proposed as a more accu
 As we can see from above plot upsloping is positive sign as 74% of the normal patients have upslope where as 73.09% heart patients have flat sloping.
 
 #### Numerical features distribution
-![](images/numeric.png)
+![](images/numeric.png)<br>
 It is evident from the above plot that heart disease risks increase with age
 #### Distribution of Cholesterol vs Resting BP
-![](images/cho-resting.png)
+![](images/cho-resting.png)<br>
 According to the above graph, patients with high cholesterol and high blood pressure are more likely to develop heart disease, whereas those with normal cholesterol and blood pressure do not.
 
 #### Distribution of Age vs Resting BP
-![](images/age_rest.png)
+![](images/age_rest.png) <br>
 Using the scatterplot above, we can observe that older patients with blood pressure levels >150 are more likely to develop heart disease than younger patients <50 years of age.
 
 ### Outlier Detection & Removal
+Outliers are defined as values that are disproportionately large or small compared to the rest of the dataset. 
+It may be a result of human error, a change in system behavior, an instrument error, or a genuine error caused by natural deviations in the population. 
+
+![](images/out.png) <br>
+According to the box plot below, there are some outliers in the following numbers: resting blood pressure, cholesterol, max heart rate and depression. 
+![](images/boxplot.png)
+
+##### Z-score
+![](images/zscore.png)
+
+##### Identify & Remove outliers with therdhold =3 
+We've set a threshold >3 here, i.e., points that fall a standard deviation beyond 3 will be treated as outliers, big or small.
 
 
+##### Converts categorical data into dummy
+In order to segregate feature and target variables, we must first encode categorical variables as dummy variables and encrypt categorical variables as dummy variables.
 
+##### Segregate dataset into feature X and target variables y & Check Correlation
+![](images/corr.png)
+  Exercise_induced_angina, st_slope_flat, st_depression, and sex_male are all highly positive correlated variables, which means that as their value increases, chances of heart disease increase.  
 
+### Dataset Split & Feature Normalization
+#### 80/20 Split
+An 80:20 split has been performed, i.e., 80% of the data will be used to train the machine learning model, and the remaining 20% will be used to test it.
 
+---Training Set--- (928, 15) (928,)
+---Test Set--- (233, 15) (233,)
 
+Both the training and test sets have a balanced distribution for the target variable.
+
+#### Min/Max Scaler
+As we can see in the dataset, many variables have 0,1 values whereas some values have continuous values of different scales which may result in giving higher priority to large-scale values to handle this scenario we have to normalize the features having continuous values in the range of [0,1].
+
+So for normalization, we have used MinMaxScaler for scaling values in the range of [0,1]. Firstly, we have to fit and transform the values on the training set i.e., X_train while for the testing set we have to only transform the values.
+
+### Cross Validation
+### Model Building
+### Model Evaluation
+#### Best Model
+#### ROC AUC Curve
+#### Precision Recall Curve
+#### Feature Importance 
 
 
 
