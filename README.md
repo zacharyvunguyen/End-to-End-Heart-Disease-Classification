@@ -11,7 +11,7 @@
 <h3 align="center">Heart Diease Classification <br>An End-to-End Machine Learning Project</h3>
 
   <p align="center">
-    Developed and deployed a classifier for heart disease based on over 20 machine learning models, achieving an accuracy of 93.13% using the ExtraTreesClassifier100 model.
+    Developed and deployed a classifier for heart disease based on over 20 machine learning models, achieving an accuracy of 93.13% using the ExtraTreesClassifier500 model.
     
   </p>
 </div>
@@ -98,7 +98,7 @@
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 In today's world, heart disease is one of the leading causes of mortality. Predicting cardiovascular disease is an important challenge in clinical data analysis. Machine learning (ML) has been proven to be effective for making predictions and decisions based on the enormous amount of healthcare data produced each year.  Various studies give only a glimpse into predicting heart disease with ML techniques.<br>
-I developed and deployed a heart disease classifier using over 20 machine learning models, achieving an accuracy of 93.13% with the ExtraTreesClassifier100 model. <br>As well as using the feature selection method to reduce 15 input variables to 9 variables and using a soft voting classifier, I trained a new model with a new accuracy of 91.42% 
+I developed and deployed a heart disease classifier using over 20 machine learning models, achieving an accuracy of 93.13% with the ExtraTreesClassifier500 model. <br>As well as using the feature selection method to reduce 15 input variables to 9 variables and using a soft voting classifier, I trained a new model ExtraTreesClassifier1000 with a new accuracy of 92.27% 
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -142,7 +142,8 @@ This project requires Python 3.8 and the following Python libraries should be in
 
 ### Exploratory Data Analysis
 #### Distribution of heart disease 
-![](images/Distribution of heart disease.png)<br>
+![](images/heart.png)
+<br>
 As per the above figure, we can observe that the dataset is balanced having 628 heart disease patients and 561 normal patients.
 #### Gender & Agewise distribution
 ![](images/gender.png)<br>
@@ -276,12 +277,787 @@ As we can see in the dataset, many variables have 0,1 values whereas some values
 So for normalization, we have used MinMaxScaler for scaling values in the range of [0,1]. Firstly, we have to fit and transform the values on the training set i.e., X_train while for the testing set we have to only transform the values.
 
 ### Cross Validation
+In order to understand which machine learning model performs well within the training set, we'll do a 10-fold cross-validation. <br>
+For this step, we need to define the machine learning model. <br>
+For this project, we will use more than 20 different machine learning algorithms with varying hyperparameters. <br> 
+All machine learning algorithms will be cross-validated 10-fold after the model is defined.
+<p><span style="font-weight: 400;">LogisticRegression12: 0.850187 (0.049795)</span></p>
+<p><span style="font-weight: 400;">LinearDiscriminantAnalysis: 0.853436 (0.044442)</span></p>
+<p><span style="font-weight: 400;">KNeighborsClassifier7: 0.846914 (0.043866)</span></p>
+<p><span style="font-weight: 400;">KNeighborsClassifier5: 0.851251 (0.030615)</span></p>
+<p><span style="font-weight: 400;">KNeighborsClassifier9: 0.844811 (0.052060)</span></p>
+<p><span style="font-weight: 400;">KNeighborsClassifier11: 0.844811 (0.038097)</span></p>
+<p><span style="font-weight: 400;">DecisionTreeClassifier: 0.862108 (0.045041)</span></p>
+<p><span style="font-weight: 400;">GaussianNB: 0.848001 (0.050105)</span></p>
+<p><span style="font-weight: 400;">SVC_Linear: 0.849100 (0.048983)</span></p>
+<p><span style="font-weight: 400;">SVC_RBF: 0.857714 (0.052635)</span></p>
+<p><span style="font-weight: 400;">AdaBoostClassifier: 0.851239 (0.048960)</span></p>
+<p><span style="font-weight: 400;">GradientBoostingClassifier: 0.882504 (0.041317)</span></p>
+<p><span style="font-weight: 400;">RandomForestClassifier_Entropy100: 0.914867 (0.032195)</span></p>
+<p><span style="font-weight: 400;">RandomForestClassifier_Gini100: 0.920266 (0.033830)</span></p>
+<p><span style="font-weight: 400;">ExtraTreesClassifier100: 0.909467 (0.038372)</span></p>
+<p><span style="font-weight: 400;">ExtraTreesClassifier500: 0.915930 (0.037674)</span></p>
+<p><span style="font-weight: 400;">MLPClassifier: 0.868478 (0.043864)</span></p>
+<p><span style="font-weight: 400;">SGDClassifier1000: 0.832971 (0.035837)</span></p>
+<p><span style="font-weight: 400;">XGBClassifier2000: 0.911641 (0.032727)</span></p>
+<p><span style="font-weight: 400;"><strong>XGBClassifier500: 0.920278 (0.030163)</strong></span></p>
+<p><span style="font-weight: 400;">XGBClassifier100: 0.886816 (0.037999)</span></p>
+<p><span style="font-weight: 400;">XGBClassifier1000: 0.915965 (0.034352)</span></p>
+<p><span style="font-weight: 400;">ExtraTreesClassifier1000: 0.912705 (0.037856)</span><span style="font-weight: 400;">.</span></p>
+
+From the above results, it is clear that the **XGBClassifier500** model outperformed others by attaining accuracy of **92.027%**.
+
 ### Model Building
+Next, we will train all the machine learning models that were cross-validated in the prior step and evaluate their performance on test data.
+
 ### Model Evaluation
+This step compares the performance of all trained machine learning models. <br>
+To evaluate our model, we must first define which evaluation metrics will be used.<br>
+**F1-measure, ROC AUC curve, and sensitivity, specificity, and precision** are the most important evaluation metrics for classification <br>
+We will also use two additional performance measures, the **Matthews correlation coefficient (MCC) and the Log Loss**, which are more reliable statistical measures.
+
 #### Best Model
-#### ROC AUC Curve
-#### Precision Recall Curve
+
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>Model</th>
+<th>Accuracy</th>
+<th>Precision</th>
+<th>Sensitivity</th>
+<th>Specificity</th>
+<th>F1 Score</th>
+<th>ROC</th>
+<th>Log_Loss</th>
+<th>mathew_corrcoef</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>15</th>
+<td>ExtraTreesClassifier500</td>
+<td>0.931330</td>
+<td>0.906977</td>
+<td>0.966942</td>
+<td>0.892857</td>
+<td>0.936000</td>
+<td>0.929900</td>
+<td>2.371803</td>
+<td>0.864146</td>
+</tr>
+<tr>
+<th>14</th>
+<td>ExtraTreesClassifier100</td>
+<td>0.927039</td>
+<td>0.900000</td>
+<td>0.966942</td>
+<td>0.883929</td>
+<td>0.932271</td>
+<td>0.925435</td>
+<td>2.520041</td>
+<td>0.856002</td>
+</tr>
+<tr>
+<th>18</th>
+<td>XGBClassifier2000</td>
+<td>0.922747</td>
+<td>0.905512</td>
+<td>0.950413</td>
+<td>0.892857</td>
+<td>0.927419</td>
+<td>0.921635</td>
+<td>2.668273</td>
+<td>0.846085</td>
+</tr>
+<tr>
+<th>22</th>
+<td>ExtraTreesClassifier1000</td>
+<td>0.922747</td>
+<td>0.893130</td>
+<td>0.966942</td>
+<td>0.875000</td>
+<td>0.928571</td>
+<td>0.920971</td>
+<td>2.668280</td>
+<td>0.847907</td>
+</tr>
+<tr>
+<th>21</th>
+<td>XGBClassifier1000</td>
+<td>0.918455</td>
+<td>0.898438</td>
+<td>0.950413</td>
+<td>0.883929</td>
+<td>0.923695</td>
+<td>0.917171</td>
+<td>2.816511</td>
+<td>0.837811</td>
+</tr>
+<tr>
+<th>12</th>
+<td>RandomForestClassifier_Entropy100</td>
+<td>0.918455</td>
+<td>0.880597</td>
+<td>0.975207</td>
+<td>0.857143</td>
+<td>0.925490</td>
+<td>0.916175</td>
+<td>2.816522</td>
+<td>0.841274</td>
+</tr>
+<tr>
+<th>13</th>
+<td>RandomForestClassifier_Gini100</td>
+<td>0.918455</td>
+<td>0.880597</td>
+<td>0.975207</td>
+<td>0.857143</td>
+<td>0.925490</td>
+<td>0.916175</td>
+<td>2.816522</td>
+<td>0.841274</td>
+</tr>
+<tr>
+<th>19</th>
+<td>XGBClassifier500</td>
+<td>0.914163</td>
+<td>0.897638</td>
+<td>0.942149</td>
+<td>0.883929</td>
+<td>0.919355</td>
+<td>0.913039</td>
+<td>2.964746</td>
+<td>0.828834</td>
+</tr>
+<tr>
+<th>20</th>
+<td>XGBClassifier100</td>
+<td>0.871245</td>
+<td>0.876033</td>
+<td>0.876033</td>
+<td>0.866071</td>
+<td>0.876033</td>
+<td>0.871052</td>
+<td>4.447104</td>
+<td>0.742104</td>
+</tr>
+<tr>
+<th>6</th>
+<td>DecisionTreeClassifier</td>
+<td>0.866953</td>
+<td>0.846154</td>
+<td>0.909091</td>
+<td>0.821429</td>
+<td>0.876494</td>
+<td>0.865260</td>
+<td>4.595356</td>
+<td>0.734925</td>
+</tr>
+<tr>
+<th>11</th>
+<td>GradientBoostingClassifier</td>
+<td>0.862661</td>
+<td>0.861789</td>
+<td>0.876033</td>
+<td>0.848214</td>
+<td>0.868852</td>
+<td>0.862124</td>
+<td>4.743581</td>
+<td>0.724836</td>
+</tr>
+<tr>
+<th>16</th>
+<td>MLPClassifier</td>
+<td>0.858369</td>
+<td>0.843750</td>
+<td>0.892562</td>
+<td>0.821429</td>
+<td>0.867470</td>
+<td>0.856995</td>
+<td>4.891827</td>
+<td>0.716959</td>
+</tr>
+<tr>
+<th>10</th>
+<td>AdaBoostClassifier</td>
+<td>0.854077</td>
+<td>0.853659</td>
+<td>0.867769</td>
+<td>0.839286</td>
+<td>0.860656</td>
+<td>0.853527</td>
+<td>5.040055</td>
+<td>0.707629</td>
+</tr>
+<tr>
+<th>9</th>
+<td>SVC_RBF</td>
+<td>0.828326</td>
+<td>0.818898</td>
+<td>0.859504</td>
+<td>0.794643</td>
+<td>0.838710</td>
+<td>0.827073</td>
+<td>5.929483</td>
+<td>0.656330</td>
+</tr>
+<tr>
+<th>4</th>
+<td>KNeighborsClassifier9</td>
+<td>0.828326</td>
+<td>0.813953</td>
+<td>0.867769</td>
+<td>0.785714</td>
+<td>0.840000</td>
+<td>0.826741</td>
+<td>5.929486</td>
+<td>0.656787</td>
+</tr>
+<tr>
+<th>2</th>
+<td>KNeighborsClassifier5</td>
+<td>0.824034</td>
+<td>0.822581</td>
+<td>0.842975</td>
+<td>0.803571</td>
+<td>0.832653</td>
+<td>0.823273</td>
+<td>6.077714</td>
+<td>0.647407</td>
+</tr>
+<tr>
+<th>8</th>
+<td>SVC_Linear</td>
+<td>0.819742</td>
+<td>0.811024</td>
+<td>0.851240</td>
+<td>0.785714</td>
+<td>0.830645</td>
+<td>0.818477</td>
+<td>6.225956</td>
+<td>0.639080</td>
+</tr>
+<tr>
+<th>1</th>
+<td>LinearDiscriminantAnalysis</td>
+<td>0.815451</td>
+<td>0.809524</td>
+<td>0.842975</td>
+<td>0.785714</td>
+<td>0.825911</td>
+<td>0.814345</td>
+<td>6.374191</td>
+<td>0.630319</td>
+</tr>
+<tr>
+<th>0</th>
+<td>LogisticRegression12</td>
+<td>0.815451</td>
+<td>0.804688</td>
+<td>0.851240</td>
+<td>0.776786</td>
+<td>0.827309</td>
+<td>0.814013</td>
+<td>6.374195</td>
+<td>0.630637</td>
+</tr>
+<tr>
+<th>3</th>
+<td>KNeighborsClassifier7</td>
+<td>0.811159</td>
+<td>0.808000</td>
+<td>0.834711</td>
+<td>0.785714</td>
+<td>0.821138</td>
+<td>0.810213</td>
+<td>6.522426</td>
+<td>0.621619</td>
+</tr>
+<tr>
+<th>7</th>
+<td>GaussianNB</td>
+<td>0.811159</td>
+<td>0.798450</td>
+<td>0.851240</td>
+<td>0.767857</td>
+<td>0.824000</td>
+<td>0.809548</td>
+<td>6.522433</td>
+<td>0.622227</td>
+</tr>
+<tr>
+<th>5</th>
+<td>KNeighborsClassifier11</td>
+<td>0.811159</td>
+<td>0.793893</td>
+<td>0.859504</td>
+<td>0.758929</td>
+<td>0.825397</td>
+<td>0.809216</td>
+<td>6.522437</td>
+<td>0.622814</td>
+</tr>
+<tr>
+<th>17</th>
+<td>SGDClassifier1000</td>
+<td>0.776824</td>
+<td>0.719745</td>
+<td>0.933884</td>
+<td>0.607143</td>
+<td>0.812950</td>
+<td>0.770514</td>
+<td>7.708376</td>
+<td>0.576586</td>
+</tr>
+</tbody>
+</table>
+
+**The ExtraTreesClassifier500 is the best performer among all the models based on the results above** 
+
+<table class="dataframe" style="width: 722px;" border="1">
+<thead>
+<tr>
+<th style="width: 15.6406px;">&nbsp;</th>
+<th style="width: 128.359px;">Model</th>
+<th style="width: 55px;">Accuracy</th>
+<th style="width: 56px;">Precision</th>
+<th style="width: 65px;">Sensitivity</th>
+<th style="width: 63px;">Specificity</th>
+<th style="width: 53px;">F1 Score</th>
+<th style="width: 52px;">ROC</th>
+<th style="width: 57px;">Log_Loss</th>
+<th style="width: 108px;">mathew_corrcoef</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th style="width: 15.6406px;">15</th>
+<td style="width: 128.359px;">ExtraTreesClassifier500</td>
+<td style="width: 55px;">0.931330</td>
+<td style="width: 56px;">0.906977</td>
+<td style="width: 65px;">0.966942</td>
+<td style="width: 63px;">0.892857</td>
+<td style="width: 53px;">0.936000</td>
+<td style="width: 52px;">0.929900</td>
+<td style="width: 57px;">2.371803</td>
+<td style="width: 108px;">0.864146</td>
+</tr>
+</tbody>
+</table>
+
 #### Feature Importance 
+![](images/featureimp.png)
+
+### Feature Selections
+#### Identify & Remove least important features
+Feature selection (FS) is the process of removing irrelevant and redundant features from the dataset to reduce training time, build simple models, and interpret the features.<br>
+In this project, we have used two filter-based FS techniques: 
+* Pearson Correlation Coefficient  
+* Chi-square. 
+
+One wrapper-based FS: 
+* Recursive Feature Elimination.
+
+And three embedded FS methods: 
+* Embedded logistic regression 
+* Embedded random forest 
+* Embedded Light GBM.
+<br> 
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>Feature</th>
+<th>Pearson</th>
+<th>Chi-2</th>
+<th>RFE</th>
+<th>Logistics</th>
+<th>Random Forest</th>
+<th>LightGBM</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>1</th>
+<td>st_slope_flat</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>6</td>
+</tr>
+<tr>
+<th>2</th>
+<td>st_depression</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>6</td>
+</tr>
+<tr>
+<th>3</th>
+<td>cholesterol</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>6</td>
+</tr>
+<tr>
+<th>4</th>
+<td>resting_blood_pressure</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>False</td>
+<td>True</td>
+<td>True</td>
+<td>5</td>
+</tr>
+<tr>
+<th>5</th>
+<td>max_heart_rate_achieved</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>False</td>
+<td>True</td>
+<td>True</td>
+<td>5</td>
+</tr>
+<tr>
+<th>6</th>
+<td>exercise_induced_angina</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>False</td>
+<td>True</td>
+<td>True</td>
+<td>5</td>
+</tr>
+<tr>
+<th>7</th>
+<td>age</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>False</td>
+<td>True</td>
+<td>True</td>
+<td>5</td>
+</tr>
+<tr>
+<th>8</th>
+<td>st_slope_upsloping</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>False</td>
+<td>True</td>
+<td>False</td>
+<td>4</td>
+</tr>
+<tr>
+<th>9</th>
+<td>sex_male</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>4</td>
+</tr>
+<tr>
+<th>10</th>
+<td>chest_pain_type_typical_angina</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>4</td>
+</tr>
+<tr>
+<th>11</th>
+<td>chest_pain_type_typical</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>4</td>
+</tr>
+<tr>
+<th>12</th>
+<td>chest_pain_type_non_anginal_pain</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>4</td>
+</tr>
+<tr>
+<th>13</th>
+<td>rest_ecg_st_t_wave_abnormality</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>3</td>
+</tr>
+<tr>
+<th>14</th>
+<td>rest_ecg_normal</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>3</td>
+</tr>
+<tr>
+<th>15</th>
+<td>fasting_blood_sugar</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<br> 
+  As a result, we will now select only the top 9 features. Our machine learning models will be retrained with these 9 selected features and their performance will be compared to see if there is an improvement.
+
+#### Soft Voting & Model Evaluation
+**Top 5 classifers after features selection**
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>Model</th>
+<th>Accuracy</th>
+<th>Precision</th>
+<th>Sensitivity</th>
+<th>Specificity</th>
+<th>F1 Score</th>
+<th>ROC</th>
+<th>Log_Loss</th>
+<th>mathew_corrcoef</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>15</th>
+<td>ExtraTreesClassifier500</td>
+<td>0.918455</td>
+<td>0.880597</td>
+<td>0.975207</td>
+<td>0.857143</td>
+<td>0.925490</td>
+<td>0.916175</td>
+<td>2.816522</td>
+<td>0.841274</td>
+</tr>
+<tr>
+<th>22</th>
+<td>ExtraTreesClassifier1000</td>
+<td>0.914163</td>
+<td>0.879699</td>
+<td>0.966942</td>
+<td>0.857143</td>
+<td>0.921260</td>
+<td>0.912043</td>
+<td>2.964757</td>
+<td>0.831855</td>
+</tr>
+<tr>
+<th>18</th>
+<td>XGBClassifier2000</td>
+<td>0.914163</td>
+<td>0.879699</td>
+<td>0.966942</td>
+<td>0.857143</td>
+<td>0.921260</td>
+<td>0.912043</td>
+<td>2.964757</td>
+<td>0.831855</td>
+</tr>
+<tr>
+<th>14</th>
+<td>ExtraTreesClassifier100</td>
+<td>0.914163</td>
+<td>0.879699</td>
+<td>0.966942</td>
+<td>0.857143</td>
+<td>0.921260</td>
+<td>0.912043</td>
+<td>2.964757</td>
+<td>0.831855</td>
+</tr>
+<tr>
+<th>12</th>
+<td>RandomForestClassifier_Entropy100</td>
+<td>0.914163</td>
+<td>0.874074</td>
+<td>0.975207</td>
+<td>0.848214</td>
+<td>0.921875</td>
+<td>0.911710</td>
+<td>2.964760</td>
+<td>0.833381</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+
+**Soft Voting Classifier**
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>Model</th>
+<th>Accuracy</th>
+<th>Precision</th>
+<th>Sensitivity</th>
+<th>Specificity</th>
+<th>F1 Score</th>
+<th>ROC</th>
+<th>Log_Loss</th>
+<th>mathew_corrcoef</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>Soft Voting</td>
+<td>0.914163</td>
+<td>0.879699</td>
+<td>0.966942</td>
+<td>0.857143</td>
+<td>0.921260</td>
+<td>0.912043</td>
+<td>2.964757</td>
+<td>0.831855</td>
+</tr>
+</tbody>
+</table>
+<div id="gtx-trans" style="position: absolute; left: 669px; top: -20px;">&nbsp;</div>
+
+**Top 5 final classifier after feature selections**
+<table class="dataframe" border="1">
+<thead>
+<tr style="height: 13px;">
+<th style="height: 13px;">&nbsp;</th>
+<th style="height: 13px;">Model</th>
+<th style="height: 13px;">Accuracy</th>
+<th style="height: 13px;">Precision</th>
+<th style="height: 13px;">Sensitivity</th>
+<th style="height: 13px;">Specificity</th>
+<th style="height: 13px;">F1 Score</th>
+<th style="height: 13px;">ROC</th>
+<th style="height: 13px;">Log_Loss</th>
+<th style="height: 13px;">mathew_corrcoef</th>
+</tr>
+</thead>
+<tbody>
+<tr style="height: 13px;">
+<th style="height: 13px;">22</th>
+<td style="height: 13px;">ExtraTreesClassifier1000</td>
+<td style="height: 13px;">0.922747</td>
+<td style="height: 13px;">0.887218</td>
+<td style="height: 13px;">0.975207</td>
+<td style="height: 13px;">0.866071</td>
+<td style="height: 13px;">0.929134</td>
+<td style="height: 13px;">0.920639</td>
+<td style="height: 13px;">2.668283</td>
+<td style="height: 13px;">0.849211</td>
+</tr>
+<tr style="height: 13px;">
+<th style="height: 13px;">14</th>
+<td style="height: 13px;">ExtraTreesClassifier100</td>
+<td style="height: 13px;">0.922747</td>
+<td style="height: 13px;">0.887218</td>
+<td style="height: 13px;">0.975207</td>
+<td style="height: 13px;">0.866071</td>
+<td style="height: 13px;">0.929134</td>
+<td style="height: 13px;">0.920639</td>
+<td style="height: 13px;">2.668283</td>
+<td style="height: 13px;">0.849211</td>
+</tr>
+<tr style="height: 13px;">
+<th style="height: 13px;">18</th>
+<td style="height: 13px;">XGBClassifier2000</td>
+<td style="height: 13px;">0.914163</td>
+<td style="height: 13px;">0.879699</td>
+<td style="height: 13px;">0.966942</td>
+<td style="height: 13px;">0.857143</td>
+<td style="height: 13px;">0.921260</td>
+<td style="height: 13px;">0.912043</td>
+<td style="height: 13px;">2.964757</td>
+<td style="height: 13px;">0.831855</td>
+</tr>
+<tr style="height: 13px;">
+<th style="height: 13px;">15</th>
+<td style="height: 13px;">ExtraTreesClassifier500</td>
+<td style="height: 13px;">0.914163</td>
+<td style="height: 13px;">0.879699</td>
+<td style="height: 13px;">0.966942</td>
+<td style="height: 13px;">0.857143</td>
+<td style="height: 13px;">0.921260</td>
+<td style="height: 13px;">0.912043</td>
+<td style="height: 13px;">2.964757</td>
+<td style="height: 13px;">0.831855</td>
+</tr>
+<tr style="height: 13px;">
+<th style="height: 13px;">0</th>
+<td style="height: 13px;">Soft Voting</td>
+<td style="height: 13px;">0.914163</td>
+<td style="height: 13px;">0.879699</td>
+<td style="height: 13px;">0.966942</td>
+<td style="height: 13px;">0.857143</td>
+<td style="height: 13px;">0.921260</td>
+<td style="height: 13px;">0.912043</td>
+<td style="height: 13px;">2.964757</td>
+<td style="height: 13px;">0.831855</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+#### Feature important
+![](images/top9.png)
+
+# Conclusion
+<ul>
+<li>As part of this project, we analyzed the Heart Disease Dataset (Comprehensive) and performed detailed data analysis and data processing.</li>
+<li>A total of more than 20 machine learning models were trained and evaluated, and their performance was compared and found that the ExtraTreesClassifier500 model with entropy criteria performed better than the others with an accuracy of 93.13 percent.</li>
+<li>We have also implemented a majority vote feature selection method that involves two filter-based, one wrapper-based, and three embedded feature selection methods.</li>
+<li>As a result of feature selection, ExtraTreesClassifier1000 performs at the highest level of accuracy with a 92.27% accuracy rate, which is less than 1% lower than its accuracy before feature selection.</li>
+<li>Based on feature importance plots, ST-Slope, cholesterol and maximum heart rate achieved contributed the most</li>
+</ul>
+<p>&nbsp;</p>
 
 
 
@@ -289,174 +1065,3 @@ So for normalization, we have used MinMaxScaler for scaling values in the range 
 
 
 
-
-
-
-
-### Built With
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/zacharyvunguyen
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
