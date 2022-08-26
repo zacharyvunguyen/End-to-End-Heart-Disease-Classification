@@ -78,10 +78,10 @@
 <li>Identify &amp; Remove least important features</li>
 <li>Split &amp; Feature Normalization</li>
 <li>Model Building after feature selection</li>
-<li>Model Evaluatation after feature selection</li>
+<li>Model Evaluation after feature selection</li>
 <li>Soft Voting</li>
 <li>Soft Voting Model Evaluation</li>
-<li>Featur Importance</li>
+<li>Feature Importance</li>
 </ol>
 </li>
 <li>Conclusion&nbsp;</li>
@@ -97,23 +97,167 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+In today's world, heart disease is one of the leading causes of mortality. Predicting cardiovascular disease is an important challenge in clinical data analysis. Machine learning (ML) has been proven to be effective for making predictions and decisions based on the enormous amount of healthcare data produced each year.  Various studies give only a glimpse into predicting heart disease with ML techniques.<br>
+I developed and deployed a heart disease classifier using over 20 machine learning models, achieving an accuracy of 93.13% with the ExtraTreesClassifier100 model. <br>As well as using the feature selection method to reduce 15 input variables to 9 variables and using a soft voting classifier, I trained a new model with a new accuracy of 91.42% 
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Dataset Description
+<p>&nbsp;</p>
+<p><span style="font-weight: 400;">Kaggle's Heart Disease Dataset (Comprehensive) has been used in this project. There are 11 features and a target variable in this dataset. There are 6 nominal variables and 5 numeric variables.</span></p>
+<p><span style="font-weight: 400;">Features variables:</span></p>
+<ol>
+<li>Age: Patients Age in years (Numeric)</li>
+<li><span style="font-weight: 400;"> Sex: Gender of patient (Male &ndash; 1, Female &ndash; 0)&nbsp;</span></li>
+<li><span style="font-weight: 400;"> Chest Pain Type: Type of chest pain experienced by patient categorized into 1 typical, 2 typical angina, 3 non-anginal pain, 4 asymptomatic (Nominal)</span></li>
+<li><span style="font-weight: 400;">Resting bp s: Level of blood pressure at resting mode in mm/HG (Numerical)</span></li>
+<li><span style="font-weight: 400;">Cholesterol: Serum cholesterol in mg/dl (Numeric)</span></li>
+<li><span style="font-weight: 400;">Fasting blood sugar: Blood sugar levels on fasting &gt; 120 mg/dl represents 1 in case of true and 0 as false (Nominal)</span></li>
+<li><span style="font-weight: 400;">Resting ecg: Result of an electrocardiogram while at rest are represented in 3 distinct values 0 : Normal 1: Abnormality in ST-T wave 2: Left ventricular hypertrophy (Nominal)</span></li>
+<li><span style="font-weight: 400;">Max heart rate: Maximum heart rate achieved (Numeric)</span></li>
+<li><span style="font-weight: 400;">Exercise angina: Angina induced by exercise 0 depicting NO 1 depicting Yes (Nominal)</span></li>
+<li><span style="font-weight: 400;">Oldpeak: Exercise-induced ST-depression in comparison with the state of rest (Numeric)</span></li>
+<li><span style="font-weight: 400;"> ST slope: ST-segment measured in terms of the slope during peak exercise 0: Normal 1: Upsloping 2: Flat 3: Downsloping (Nominal)</span></li>
+</ol>
+<p><span style="font-weight: 400;">Target variable</span></p>
+<ol>
+<li><span style="font-weight: 400;"> target: It is the target variable that we have to predict 1 means the patient is suffering from heart risk and 0 means the patient is norma</span></li>
+</ol>
+
+### Libraries 
+This project requires Python 3.8 and the following Python libraries should be installed to get the project started: <br>
+
+* Numpy
+* Pandas
+* matplotlib
+* scikit-learn
+* seaborn
+* xgboost
+
+
+### Data Cleaning & Preprocessing 
+* Converting features to catetgorical values
+* Checking missing values
+
+### Exploratory Data Analysis
+#### Distribution of heart disease 
+![](images/Distribution of heart disease.png)
+As per the above figure, we can observe that the dataset is balanced having 628 heart disease patients and 561 normal patients.
+#### Gender & Agewise distribution
+![](images/gender.png)
+As we can see from above plot, in this dataset males percentage is way too higher than females where as average age of patients is around 55.
+![](images/age_normal.png)
+![](images/age_heartpatient.png)
+As we can see from above plot more patients accounts for heart disease in comparison to females whereas mean age for heart disease patients is around 58 to 60 years
+#### Chest pain type distribution
+![](images/chest_pain.png)
+<table id="T_3de82_" class="dataframe">
+<thead>
+<tr>
+<th class="index_name level0">target</th>
+<th class="col_heading level0 col0">0</th>
+<th class="col_heading level0 col1">1</th>
+</tr>
+<tr>
+<th class="index_name level0">chest_pain_type</th>
+<th class="blank col0">&nbsp;</th>
+<th class="blank col1">&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th id="T_3de82_level0_row0" class="row_heading level0 row0">asymptomatic</th>
+<td id="T_3de82_row0_col0" class="data row0 col0">25.310000</td>
+<td id="T_3de82_row0_col1" class="data row0 col1">76.910000</td>
+</tr>
+<tr>
+<th id="T_3de82_level0_row1" class="row_heading level0 row1">non_anginal_pain</th>
+<td id="T_3de82_row1_col0" class="data row1 col0">34.400000</td>
+<td id="T_3de82_row1_col1" class="data row1 col1">14.170000</td>
+</tr>
+<tr>
+<th id="T_3de82_level0_row2" class="row_heading level0 row2">typical</th>
+<td id="T_3de82_row2_col0" class="data row2 col0">7.310000</td>
+<td id="T_3de82_row2_col1" class="data row2 col1">3.980000</td>
+</tr>
+<tr>
+<th id="T_3de82_level0_row3" class="row_heading level0 row3">typical_angina</th>
+<td id="T_3de82_row3_col0" class="data row3 col0">32.980000</td>
+<td id="T_3de82_row3_col1" class="data row3 col1">4.940000</td>
+</tr>
+</tbody>
+</table>
+As we can see from the above plot and statistics, 76.91% of the chest pain type of heart disease patients have asymptomatic chest pain.
+
+#### ST-Slope Distribution
+![](images/stslop.png)
+<table id="T_145b6_" class="dataframe">
+<thead>
+<tr>
+<th class="index_name level0">target</th>
+<th class="col_heading level0 col0">0</th>
+<th class="col_heading level0 col1">1</th>
+</tr>
+<tr>
+<th class="index_name level0">st_slope</th>
+<th class="blank col0">&nbsp;</th>
+<th class="blank col1">&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th id="T_145b6_level0_row0" class="row_heading level0 row0">downsloping</th>
+<td id="T_145b6_row0_col0" class="data row0 col0">3.920000</td>
+<td id="T_145b6_row0_col1" class="data row0 col1">9.390000</td>
+</tr>
+<tr>
+<th id="T_145b6_level0_row1" class="row_heading level0 row1">flat</th>
+<td id="T_145b6_row1_col0" class="data row1 col0">21.930000</td>
+<td id="T_145b6_row1_col1" class="data row1 col1">73.090000</td>
+</tr>
+<tr>
+<th id="T_145b6_level0_row2" class="row_heading level0 row2">upsloping</th>
+<td id="T_145b6_row2_col0" class="data row2 col0">74.150000</td>
+<td id="T_145b6_row2_col1" class="data row2 col1">17.520000</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+The ST segment /heart rate slope (ST/HR slope), has been proposed as a more accurate ECG criterion for diagnosing significant coronary artery disease (CAD) in most of the research papers.
+
+As we can see from above plot upsloping is positive sign as 74% of the normal patients have upslope where as 73.09% heart patients have flat sloping.
+
+#### Numerical features distribution
+![](images/numeric.png)
+It is evident from the above plot that heart disease risks increase with age
+#### Distribution of Cholesterol vs Resting BP
+![](images/cho-resting.png)
+According to the above graph, patients with high cholesterol and high blood pressure are more likely to develop heart disease, whereas those with normal cholesterol and blood pressure do not.
+
+#### Distribution of Age vs Resting BP
+![](images/age_rest.png)
+Using the scatterplot above, we can observe that older patients with blood pressure levels >150 are more likely to develop heart disease than younger patients <50 years of age.
+
+### Outlier Detection & Removal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 ### Built With
-
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 * [![Next][Next.js]][Next-url]
