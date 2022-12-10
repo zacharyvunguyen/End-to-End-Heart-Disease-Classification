@@ -11,8 +11,8 @@
 <h3 align="center">Heart Diease Classification <br>An End-to-End Machine Learning Project</h3>
 
   <p align="center">
-    Developed and deployed a classifier for heart disease based on over 20 machine learning models, achieving an accuracy of 93.13% using the ExtraTreesClassifier500 model. <br>
-We have also implemented two filter-based methods, one wrapper-based method, and three embedded methods for majority vote feature selection. With feature selection, ExtraTreesClassifier1000 performs at the highest level of accuracy with an accuracy rate of 92.27%.
+    	Developed and deployed a classifier for heart disease based on 45 machine-learning models, achieving accuracy and recall of 99.6% using a tuned stacking classifier (model)![image](https://user-images.githubusercontent.com/33263084/206875812-12550868-dfdf-4abf-85c2-41389852bfab.png)
+. <br>
 
     
   </p>
@@ -100,7 +100,8 @@ We have also implemented two filter-based methods, one wrapper-based method, and
 ![](images/appscreen.png)
 
 In today's world, heart disease is one of the leading causes of mortality. Predicting cardiovascular disease is an important challenge in clinical data analysis. Machine learning (ML) has been proven to be effective for making predictions and decisions based on the enormous amount of healthcare data produced each year.  Various studies give only a glimpse into predicting heart disease with ML techniques.<br>
-I developed and deployed a heart disease classifier using over 20 machine learning models, achieving an accuracy of 93.13% with the ExtraTreesClassifier500 model. <br>As well as using the feature selection method to reduce 15 input variables to 9 variables and using a soft voting classifier, I trained a new model ExtraTreesClassifier1000 with a new accuracy of 92.27% 
+I developed and deployed a classifier for heart disease based on 45 machine-learning models, achieving accuracy and recall of 99.6% using a tuned stacking classifier (model)![image](https://user-images.githubusercontent.com/33263084/206875831-acb40347-f464-490d-876b-8d9f18bed65b.png)
+. <br>As well as using the feature selection method to reduce 15 input variables to 9 variables and using a soft voting classifier, I trained a new model ExtraTreesClassifier1000 with a new accuracy of 92.27% 
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
