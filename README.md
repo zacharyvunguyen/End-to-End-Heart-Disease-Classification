@@ -11,7 +11,8 @@
 <h3 align="center">Heart Diease Classification <br>An End-to-End Machine Learning Project</h3>
 
   <p align="center">
-    	Developed and deployed a classifier for heart disease based on 45 machine-learning models, achieving accuracy and recall of 99.6% using a tuned stacking classifier (model)![image](https://user-images.githubusercontent.com/33263084/206875812-12550868-dfdf-4abf-85c2-41389852bfab.png)
+    	Developed and deployed a classifier for heart disease based on 45 machine-learning models, achieving accuracy and recall of 99.6% using a tuned stacking classifier (model)
+      ![image](https://user-images.githubusercontent.com/33263084/206875812-12550868-dfdf-4abf-85c2-41389852bfab.png)
 . <br>
 
     
